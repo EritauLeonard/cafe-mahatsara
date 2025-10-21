@@ -1,0 +1,672 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background: #2F1B0A; /* Marron foncé */
+  justify-content: center;
+  align-items: center;
+}
+
+.app-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.wrapper {
+  position: relative;
+  width: 750px;
+  height: 450px;
+  background: transparent;
+  border: 2px solid #8B4513; /* Marron */
+  box-shadow: 0 0 25px #8B4513;
+  overflow: hidden;
+  /* AJOUTE CES LIGNES : */
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.wrapper .form-box {
+  position: absolute;
+  top: 0; /* Ajusté à 0 pour une meilleure superposition */
+  width: 50%;
+  height: 100%;
+  display: flex; /* Utilise flexbox pour centrer le contenu */
+  flex-direction: column;
+  justify-content: center;
+  /* Ajoutez une transition de base pour le form-box lui-même si nécessaire,
+     mais les animations individuelles gèrent la plupart du mouvement */
+  transition: transform 0.7s ease, opacity 0.7s ease;
+}
+
+.wrapper .form-box.login {
+  left: 0px;
+  padding: 0px 60px 0px 40px;
+  /* Par défaut visible */
+  transform: translateX(0%);
+  opacity: 1;
+}
+
+.wrapper .form-box.login .animation {
+  /* Le transform: translateX(0px); est déjà l'état par défaut ici,
+     il est géré par la transition lorsque la classe 'active' est ajoutée au wrapper. */
+  transform: translateX(0px);
+  opacity: 1;
+  filter: blur(0px);
+  transition: 0.7s ease forwards; /* Utilisez forwards pour maintenir l'état final */
+}
+
+.wrapper.active .form-box.login {
+    transform: translateX(-120%); /* Déplace la boîte de connexion hors de vue */
+    opacity: 0;
+    pointer-events: none; /* Désactive les interactions */
+    transition-delay: 0s; /* Commence immédiatement la transition de la boîte elle-même */
+}
+
+.wrapper.active .form-box.login .animation {
+  transform: translateX(-120%);
+  opacity: 0;
+  filter: blur(10px);
+  transition-delay: calc(0.1s * var(--i));
+}
+
+.wrapper .form-box.register {
+  right: 0;
+  padding: 0 40px 0 60px;
+  /* Par défaut caché et décalé */
+  transform: translateX(120%);
+  opacity: 0;
+  pointer-events: none; /* Empêche les clics sur les champs masqués */
+}
+
+.wrapper.active .form-box.register {
+  /* Rend visible et déplace à la position active */
+  transform: translateX(0%);
+  opacity: 1;
+  pointer-events: auto; /* Active les interactions */
+  transition-delay: 0s; /* Commence immédiatement la transition de la boîte elle-même */
+}
+
+.wrapper .form-box.register .animation {
+  transform: translateX(120%);
+  opacity: 0;
+  filter: blur(10px);
+  transition: .7s ease forwards; /* Utilisez forwards */
+  transition-delay: calc(.1s * var(--j));
+}
+
+.wrapper.active .form-box.register .animation {
+  transform: translateX(0);
+  opacity: 1;
+  filter: blur(0);
+  transition-delay: calc(0.1s * var(--i));
+}
+
+.password-mismatch {
+  border-bottom-color: #ff0000 !important;
+}
+
+.password-match {
+  border-bottom-color: #00ff00 !important;
+}
+
+/* Styles pour les titres des formulaires */
+.form-box.login h2, .form-box.register h2 {
+  font-size: 32px;
+  color: #D2B48C;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Styles pour les input boxes dans les deux formulaires */
+.form-box .input-box { /* Applique à la fois au login et au register */
+  position: relative;
+  width: 100%;
+  height: 50px;
+  margin: 15px 0;
+}
+
+.form-box.register .input-box {
+    margin: 10px 0; /* Réduit l’espace entre les champs pour l'inscription */
+}
+
+
+.form-box .input-box input {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid #D2B48C;
+  padding-right: 23px;
+  font-size: 16px;
+  color: #D2B48C;
+  font-weight: 500;
+  transition: 0.5s;
+}
+
+/* Couleurs spécifiques pour le focus/valid pour le formulaire d'inscription */
+.form-box.register .input-box input:focus,
+.form-box.register .input-box input:valid {
+  border-bottom-color: #8B4513; /* Une couleur différente pour l'inscription, par exemple */
+}
+/* Couleurs spécifiques pour le focus/valid pour le formulaire de connexion */
+.form-box.login .input-box input:focus,
+.form-box.login .input-box input:valid {
+  border-bottom-color: #8B4513; /* Couleur marron pour la connexion */
+}
+
+.form-box .input-box label {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  font-size: 16px;
+  color: #D2B48C;
+  pointer-events: none;
+  transition: 0.5s;
+}
+
+/* Ajustement pour le label au focus/valid */
+.form-box .input-box input:focus ~ label,
+.form-box .input-box input:valid ~ label {
+  top: 5px;
+}
+/* Couleurs des labels spécifiques */
+.form-box.login .input-box input:focus ~ label,
+.form-box.login .input-box input:valid ~ label {
+    color: #8B4513;
+}
+.form-box.register .input-box input:focus ~ label,
+.form-box.register .input-box input:valid ~ label {
+  color: #8B4513; /* Nouvelle couleur pour l'inscription */
+}
+
+
+.form-box .input-box i {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  font-size: 18px;
+  color: #D2B48C;
+  transition: 0.5s;
+}
+
+/* Couleurs des icônes spécifiques */
+.form-box.login .input-box input:focus ~ i,
+.form-box.login .input-box input:valid ~ i {
+  color: #8B4513;
+}
+.form-box.register .input-box input:focus ~ i,
+.form-box.register .input-box input:valid ~ i {
+  color: #8B4513; /* Nouvelle couleur pour l'inscription */
+}
+
+
+/* Styles des boutons (Login et Register ont des styles similaires mais des couleurs de fond différentes) */
+.form-box .btn {
+  position: relative;
+  width: 100%;
+  height: 45px;
+  background: transparent;
+  border: 2px solid #8B4513;
+  outline: none;
+  border-radius: 40px;
+  cursor: pointer;
+  font-size: 16px;
+  color: #D2B48C;
+  font-weight: 600;
+  z-index: 1;
+  overflow: hidden;
+  margin-top: 20px;
+  display: flex; /* Assure que le texte du bouton est centré */
+  justify-content: center;
+  align-items: center;
+}
+
+.form-box.login .btn::before {
+  content: '';
+  position: absolute;
+  top: -100%;
+  left: 0;
+  width: 100%;
+  height: 300%;
+  background: linear-gradient(#2F1B0A, #8B4513, #2F1B0A, #8B4513);
+  z-index: -1;
+  transition: 0.5s;
+}
+
+.form-box.login .btn:hover::before {
+  top: 0;
+}
+
+.form-box.register .btn {
+  border: 2px solid #8B4513;/* Nouvelle couleur de bordure pour le bouton d'inscription */
+}
+
+.form-box.register .btn::before {
+  content: '';
+  position: absolute;
+  top: -100%;
+  left: 0;
+  width: 100%;
+  height: 300%;
+  background: linear-gradient(#2F1B0A, #8B4513, #2F1B0A, #8B4513); /* Nouveau gradient pour l'inscription */
+  z-index: -1;
+  transition: 0.5s;
+}
+
+.form-box.register .btn:hover::before {
+  top: 0;
+}
+
+.form-box .logreg-link {
+  font-size: 14.5px;
+  color: #D2B48C;
+  text-align: center;
+  margin: 20px 0 10px;
+}
+
+.logreg-link p button {
+  background: none;
+  border: none;
+  color: #D2B48C;
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  transition: color 0.3s ease;
+}
+
+.logreg-link p button:hover {
+  color: #8B4513; /* Couleur de survol pour les liens de bascule */
+}
+
+p {
+  color: #ffffff;
+}
+
+/* Mise à jour des classes pour les infos-text */
+.wrapper .info-text {
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: transform 0.7s ease, opacity 0.7s ease; /* Ajout d'une transition générale */
+}
+
+.wrapper .info-text.login {
+  right: 0;
+  text-align: right;
+  padding: 0 40px 60px 150px;
+  transform: translateX(0%);
+  opacity: 1;
+}
+
+.wrapper .info-text.login .animation {
+  transform: translateX(0);
+  opacity: 1;
+  filter: blur(0);
+  transition: .7s ease forwards;
+  transition-delay: calc(.1s * var(--j));
+}
+
+.wrapper.active .info-text.login {
+  transform: translateX(120%);
+  opacity: 0;
+  pointer-events: none;
+  transition-delay: 0s;
+}
+
+.wrapper.active .info-text.login .animation {
+  transform: translateX(120%);
+  opacity: 0;
+  filter: blur(10px);
+  transition-delay: calc(0.1s * var(--i));
+}
+
+.wrapper .info-text.register {
+  left: 0;
+  text-align: left;
+  padding: 0 150px 60px 40px;
+  transform: translateX(-120%); /* Initialement hors écran */
+  opacity: 0;
+  pointer-events: none;
+}
+
+.wrapper.active .info-text.register {
+  transform: translateX(0%);
+  opacity: 1;
+  pointer-events: auto;
+  transition-delay: 0s;
+}
+
+.wrapper .info-text.register .animation {
+  transform: translateX(-120%);
+  opacity: 0;
+  filter: blur(10px);
+  transition: .7s ease forwards;
+  transition-delay: calc(.1s * var(--j));
+}
+
+.wrapper.active .info-text.register .animation {
+  transform: translateX(0);
+  opacity: 1;
+  filter: blur(0);
+  transition-delay: calc(0.1s * var(--i));
+}
+
+.info-text.login h2, .info-text.register h2 {
+  font-size: 36px;
+  color: #D2B48C;
+  line-height: 1.3;
+  text-transform: uppercase;
+}
+
+.info-text.login p, .info-text.register p {
+  font-size: 16px;
+  color: #D2B48C;
+}
+
+/* Animations (pas de changement ici, elles sont déjà bien) */
+@keyframes bounce {
+  from { transform: translateY(0); }
+  to { transform: translateY(-10px); }
+}
+
+@keyframes fade {
+  from { opacity: 0.7; }
+  to { opacity: 1; }
+}
+
+/* Background animations */
+.wrapper .bg-animate {
+  position: absolute;
+  top: -4px;
+  right: 0;
+  width: 850px;
+  height: 600px;
+  background: linear-gradient(45deg, #2F1B0A, #8B4513);
+  border-bottom: 3px solid #8B4513;
+  transform: rotate(10deg) skewY(40deg);
+  transform-origin: bottom right;
+  transition: 1.5s ease;
+  transition-delay: 1.6s;
+}
+
+.wrapper.active .bg-animate {
+  transform: rotate(0) skewY(0);
+  transition-delay: 0.5s;
+}
+
+.wrapper .bg-animate2 {
+  position: absolute;
+  top: 100%;
+  left: 250px;
+  width: 850px;
+  height: 700px;
+  background: #2F1B0A;
+  border-top: 3px solid #8B4513;
+  transform: rotate(0) skewY(0);
+  transform-origin: bottom left;
+  transition: 1.5s ease;
+  transition-delay: 0.5s;
+}
+
+.wrapper.active .bg-animate2 {
+  transform: rotate(-11deg) skewY(-41deg);
+  transition-delay: 1.2s;
+}
+
+/* Styles pour les messages d'erreur/succès */
+.message-display {
+    text-align: center;
+    margin-top: 15px;
+    font-weight: 600;
+    position: absolute; /* Pour le positionner plus librement */
+    bottom: 20px; /* Exemple de positionnement */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%; /* Pour qu'il ne soit pas trop large */
+    padding: 10px;
+    border-radius: 5px;
+}
+
+p.error {
+  color: #A52A2A; /* Erreur marron rougeâtre */
+  background-color: rgba(255, 0, 0, 0.2); /* Fond léger pour l'erreur */
+}
+
+p.success {
+    color: #8B4513; /* Vert/cyan pour le succès */
+    background-color: rgba(0, 255, 0, 0.1); /* Fond léger pour le succès */
+}
+
+/****************************************************************************
+Fond léger pour le succès 
+*****************************************************************************/
+
+.admin-panel {
+  position: relative;
+  width: 100%;
+  padding: 20px;
+  text-align: center;
+  color: #D2B48C;
+}
+
+.admin-panel h2 {
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+.admin-section {
+  margin-bottom: 30px;
+  padding: 15px;
+  border: 1px solid #8B4513;
+  border-radius: 10px;
+}
+
+.admin-section h3 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.admin-section p {
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+
+.admin-section .input-box {
+  position: relative;
+  width: 100%;
+  height: 50px;
+  margin: 15px 0;
+}
+
+.admin-section .input-box input {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid #D2B48C;
+  padding-right: 23px;
+  font-size: 16px;
+  color: #D2B48C;
+  font-weight: 500;
+  transition: 0.5s;
+}
+
+.admin-section .input-box input:focus,
+.admin-section .input-box input:valid {
+  border-bottom-color: #8B4513;
+}
+
+.admin-section .input-box label {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  font-size: 16px;
+  color: #D2B48C;
+  pointer-events: none;
+  transition: 0.5s;
+}
+
+.admin-section .input-box input:focus ~ label,
+.admin-section .input-box input:valid ~ label {
+  top: 5px;
+  color: #8B4513;
+}
+
+.admin-section .btn {
+  position: relative;
+  width: 100%;
+  height: 45px;
+  background: transparent;
+  border: 2px solid #8B4513;
+  outline: none;
+  border-radius: 40px;
+  cursor: pointer;
+  font-size: 16px;
+  color: #D2B48C;
+  font-weight: 600;
+  z-index: 1;
+  overflow: hidden;
+  margin-top: 20px;
+}
+
+.admin-section .btn::before {
+  content: '';
+  position: absolute;
+  top: -100%;
+  left: 0;
+  width: 100%;
+  height: 300%;
+  background: linear-gradient(#2F1B0A, #8B4513, #2F1B0A, #8B4513);
+  z-index: -1;
+  transition: 0.5s;
+}
+
+.admin-section .btn:hover::before {
+  top: 0;
+}
+
+.client-panel {
+  position: relative;
+  width: 100%;
+  padding: 20px;
+  text-align: center;
+  color: #D2B48C;
+}
+
+.client-panel h2 {
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+.client-panel p {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.client-panel .btn {
+  position: relative;
+  width: 100%;
+  height: 45px;
+  background: transparent;
+  border: 2px solid #8B4513;
+  outline: none;
+  border-radius: 40px;
+  cursor: pointer;
+  font-size: 16px;
+  color: #D2B48C;
+  font-weight: 600;
+  z-index: 1;
+  overflow: hidden;
+  margin-top: 20px;
+}
+
+.client-panel .btn::before {
+  content: '';
+  position: absolute;
+  top: -100%;
+  left: 0;
+  width: 100%;
+  height: 300%;
+  background: linear-gradient(#2F1B0A, #8B4513, #2F1B0A, #8B4513);
+  z-index: -1;
+  transition: 0.5s;
+}
+
+.client-panel .btn:hover::before {
+  top: 0;
+}
+
+/****************livreur*********************/
+.livreur-panel {
+  position: relative;
+  width: 100%;
+  padding: 20px;
+  text-align: center;
+  color: #D2B48C;
+}
+
+.livreur-panel h2 {
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+.livreur-panel p {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.livreur-panel .btn {
+  position: relative;
+  width: 100%;
+  height: 45px;
+  background: transparent;
+  border: 2px solid #8B4513;
+  outline: none;
+  border-radius: 40px;
+  cursor: pointer;
+  font-size: 16px;
+  color: #D2B48C;
+  font-weight: 600;
+  z-index: 1;
+  overflow: hidden;
+  margin-top: 20px;
+}
+
+.livreur-panel .btn::before {
+  content: '';
+  position: absolute;
+  top: -100%;
+  left: 0;
+  width: 100%;
+  height: 300%;
+  background: linear-gradient(#2F1B0A, #8B4513, #2F1B0A, #8B4513);
+  z-index: -1;
+  transition: 0.5s;
+}
+
+.livreur-panel .btn:hover::before {
+  top: 0;
+}

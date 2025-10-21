@@ -1,0 +1,295 @@
+.suivi-container {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  gap: 25px;
+  margin-top: 25px;
+}
+
+.commandes-list,
+.carte-suivi,
+.livreurs-map {
+  background: #5c3b1e;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  border: 2px solid #7a4d2f;
+  color: #FFFFFF;
+}
+
+.commandes-list h4,
+.carte-suivi h4,
+.livreurs-map h4 {
+  color: #A9BA9D;
+  margin-bottom: 20px;
+  font-size: 1.3em;
+  font-weight: 600;
+  border-bottom: 2px solid #7a4d2f;
+  padding-bottom: 10px;
+}
+
+/* Liste des commandes */
+.commandes-list {
+  max-height: 700px;
+  overflow-y: auto;
+}
+
+.commandes-list ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.commandes-list li {
+  padding: 15px;
+  margin-bottom: 12px;
+  background: #4A2C2A;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-left: 4px solid #A9BA9D;
+}
+
+.commandes-list li:hover {
+  background: #3A1C1A;
+  transform: translateX(5px);
+}
+
+.commandes-list li.selected {
+  background: rgba(169, 186, 157, 0.2);
+  border-left: 4px solid #8CA17C;
+}
+
+/*  historique */
+.historique-list {
+  margin-top: 20px;
+}
+
+.historique-list table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.historique-list th, .historique-list td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.historique-list th {
+  background-color: #f2f2f2;
+}
+
+/* Styles pour les onglets */
+.tabs {
+  display: flex;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #ddd;
+}
+
+.tabs button {
+  padding: 10px 20px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 14px;
+  border-bottom: 3px solid transparent;
+  margin-right: 5px;
+}
+
+.tabs button.active {
+  border-bottom-color: #007bff;
+  color: #007bff;
+  font-weight: bold;
+}
+
+.tabs button:hover {
+  background-color: #f8f9fa;
+}
+
+/* Badges de statut */
+.statut-badge {
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.statut-validee {
+  background-color: #17a2b8; /* Bleu */
+}
+
+.statut-preparation {
+  background-color: #ffc107; /* Jaune */
+  color: #000;
+}
+
+.statut-en-route {
+  background-color: #fd7e14; /* Orange */
+}
+
+.statut-livre {
+  background-color: #28a745; /* Vert */
+}
+
+.statut-default {
+  background-color: #6c757d; /* Gris */
+}
+
+/* Tableaux */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #f8f9fa;
+  font-weight: bold;
+}
+
+tr:hover {
+  background-color: #f5f5f5;
+}
+
+/* Carte
+<div ref={mapRef} className="leaflet-map-container"></div>
+*/
+.leaflet-map-container {
+  height: 400px;
+  width: 100%;
+  border-radius: 12px;
+  border: 2px solid #7a4d2f;
+  overflow: hidden;
+  margin: 15px 0;
+}
+
+.info-commande {
+  background: #4A2C2A;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #7a4d2f;
+}
+
+.info-commande h5 {
+  color: #A9BA9D;
+  margin: 0 0 15px 0;
+  font-size: 1.2em;
+  font-weight: 600;
+}
+
+.position-details {
+  background: rgba(169, 186, 157, 0.1);
+  padding: 15px;
+  border-radius: 8px;
+  margin: 15px 0;
+  border: 1px solid #7a4d2f;
+}
+
+.btn-map {
+  background: #A9BA9D;
+  color: #4A2C2A;
+  padding: 10px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  display: inline-block;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.btn-map:hover {
+  background: #8CA17C;
+  transform: translateY(-2px);
+}
+
+/* Livreurs */
+.point-livreur-carte {
+  background: #4A2C2A;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  border-left: 3px solid #A9BA9D;
+  transition: all 0.3s ease;
+}
+
+.point-livreur-carte:hover {
+  background: #3A1C1A;
+  transform: translateX(3px);
+}
+
+.nom-livreur {
+  font-weight: bold;
+  color: #A9BA9D;
+  display: block;
+  margin-bottom: 8px;
+  font-size: 1.1em;
+}
+
+/* Badges de statut */
+.statut-badge {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.85em;
+  font-weight: bold;
+  margin-left: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.statut-en-attente {
+  background: #6c757d;
+  color: white;
+}
+
+.statut-validée {
+  background: #17a2b8;
+  color: white;
+}
+
+.statut-en-préparation {
+  background: #ffc107;
+  color: black;
+}
+
+.statut-en-route-pour-livraison {
+  background: #fd7e14;
+  color: white;
+}
+
+.statut-livré {
+  background: #28a745;
+  color: white;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .suivi-container {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .leaflet-map-container {
+    height: 300px;
+  }
+}
+
+@media (max-width: 768px) {
+  .suivi-container {
+    margin: 10px;
+  }
+  
+  .commandes-list,
+  .carte-suivi,
+  .livreurs-map {
+    padding: 15px;
+  }
+}
+.coordonnees a {
+  color: rgb(255, 255, 255);
+}

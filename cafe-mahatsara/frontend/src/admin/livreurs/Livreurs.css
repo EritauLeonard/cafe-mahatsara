@@ -1,0 +1,263 @@
+.livreur-section {
+  padding: 20px;
+  background: #4A2C2A;
+  color: #FFFFFF;
+  border-radius: 8px;
+  margin: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.livreur-section h3 {
+  color: #A9BA9D;
+  margin-bottom: 25px;
+  font-size: 1.8em;
+  font-weight: bold;
+  border-bottom: 2px solid #A9BA9D;
+  padding-bottom: 10px;
+}
+
+.livreur-section h4 {
+  color: #A9BA9D;
+  margin: 30px 0 20px;
+  font-size: 1.4em;
+  font-weight: 600;
+}
+
+/* Formulaire */
+.livreur-section form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
+  background: #5c3b1e;
+  padding: 25px;
+  border-radius: 8px;
+}
+
+.input-box {
+  position: relative;
+  margin-bottom: 0;
+}
+
+.input-box input {
+  width: 100%;
+  padding: 12px 15px;
+  border: 2px solid #7a4d2f;
+  border-radius: 6px;
+  font-size: 14px;
+  background: #FFFFFF;
+  color: #4A2C2A;
+  transition: border-color 0.3s ease;
+}
+
+.input-box input:focus {
+  border-color: #A9BA9D;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(169, 186, 157, 0.2);
+}
+
+.input-box input:disabled {
+  background: #e9ecef;
+  color: #6c757d;
+  cursor: not-allowed;
+}
+
+.input-box label {
+  position: absolute;
+  top: -10px;
+  left: 12px;
+  background: #5c3b1e;
+  padding: 0 8px;
+  font-size: 12px;
+  color: #A9BA9D;
+  font-weight: 500;
+}
+
+/* Barre de recherche */
+.search-bar {
+  margin: 20px 0;
+}
+
+.search-input {
+  width: 100%;
+  max-width: 400px;
+  padding: 12px 15px;
+  border: 2px solid #7a4d2f;
+  border-radius: 6px;
+  font-size: 14px;
+  background: #FFFFFF;
+  color: #4A2C2A;
+}
+
+.search-input:focus {
+  border-color: #A9BA9D;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(169, 186, 157, 0.2);
+}
+
+/* Boutons du formulaire */
+.form-buttons {
+  grid-column: 1 / -1;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  font-size: 14px;
+}
+
+.btn.primary {
+  background: #A9BA9D;
+  color: #4A2C2A;
+}
+
+.btn.primary:hover {
+  background: #8fa082;
+  transform: translateY(-1px);
+}
+
+.btn.secondary {
+  background: #6c757d;
+  color: white;
+}
+
+.btn.secondary:hover {
+  background: #5a6268;
+  transform: translateY(-1px);
+}
+
+/* Liste des livreurs */
+.livreurs-list {
+  margin-top: 20px;
+}
+
+.livreurs-list table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: #FFFFFF;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.livreurs-list th {
+  background: #5c3b1e;
+  color: #FFFFFF;
+  padding: 15px 20px;
+  text-align: left;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.livreurs-list td {
+  padding: 15px 20px;
+  border-bottom: 1px solid #e9ecef;
+  color: #4A2C2A;
+}
+
+.livreurs-list tr:last-child td {
+  border-bottom: none;
+}
+
+.livreurs-list tr:hover {
+  background-color: #f8f9fa;
+}
+
+/* Boutons d'action */
+.action-btn {
+  padding: 8px 15px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  margin-right: 8px;
+  font-size: 12px;
+}
+
+.edit-btn {
+  background: #28a745;
+  color: white;
+}
+
+.edit-btn:hover {
+  background: #218838;
+  transform: translateY(-1px);
+}
+
+.delete-btn {
+  background: #dc3545;
+  color: white;
+}
+
+.delete-btn:hover {
+  background: #c82333;
+  transform: translateY(-1px);
+}
+
+.message {
+  padding: 15px 20px;
+  border-radius: 8px;
+  margin: 15px 0;
+  text-align: center;
+  font-weight: 500;
+}
+
+.message.success {
+  background: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.message.error {
+  background: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+/* Aucune donnée */
+.no-data {
+  text-align: center;
+  padding: 40px;
+  background: #FFFFFF;
+  border-radius: 8px;
+  color: #4A2C2A;
+  font-style: italic;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .livreur-section {
+    margin: 10px;
+    padding: 15px;
+  }
+  
+  .livreur-section form {
+    grid-template-columns: 1fr;
+  }
+  
+  .livreurs-list {
+    overflow-x: auto;
+  }
+  
+  .livreurs-list table {
+    min-width: 600px;
+  }
+  
+  .form-buttons {
+    flex-direction: column;
+  }
+  
+  .btn {
+    width: 100%;
+  }
+}

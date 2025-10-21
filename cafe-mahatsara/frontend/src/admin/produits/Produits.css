@@ -1,0 +1,142 @@
+.admin-container {
+  max-width: 800px;
+  margin: 20px auto;
+  background: #4A2C2A;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  color: #FFFFFF;
+}
+
+.admin-container h1 {
+  color: #A9BA9D;
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 2.2em;
+  font-weight: bold;
+  border-bottom: 2px solid #A9BA9D;
+  padding-bottom: 15px;
+}
+
+/* Formulaire */
+.product-form {
+  background: #5c3b1e;
+  padding: 25px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  border: 2px solid #7a4d2f;
+}
+
+.product-form h2 {
+  color: #A9BA9D;
+  margin-bottom: 20px;
+  font-size: 1.5em;
+  font-weight: 600;
+}
+
+.product-form label {
+  display: block;
+  margin-bottom: 8px;
+  color: #A9BA9D;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.product-form select,
+.product-form input {
+  width: 100%;
+  padding: 12px 15px;
+  border: 2px solid #7a4d2f;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  background: #FFFFFF;
+  color: #4A2C2A;
+  transition: border-color 0.3s ease;
+}
+
+.product-form select:focus,
+.product-form input:focus {
+  border-color: #A9BA9D;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(169, 186, 157, 0.2);
+}
+
+.product-form button {
+  background: #A9BA9D;
+  color: #4A2C2A;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.product-form button:hover {
+  background: #8CA17C;
+  transform: translateY(-2px);
+}
+
+/* Affichage du stock */
+.stock-display {
+  background: #5c3b1e;
+  padding: 25px;
+  border-radius: 10px;
+  border: 2px solid #7a4d2f;
+}
+
+.stock-display h2 {
+  color: #A9BA9D;
+  margin-bottom: 20px;
+  font-size: 1.5em;
+  font-weight: 600;
+  text-align: center;
+}
+
+.stock-display p {
+  font-size: 1.2em;
+  margin: 15px 0;
+  padding: 12px 20px;
+  background: #4A2C2A;
+  border-radius: 8px;
+  border-left: 4px solid #A9BA9D;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #FFFFFF;
+}
+
+.stock-display span {
+  font-weight: bold;
+  color: #A9BA9D;
+  font-size: 1.3em;
+  background: #3A1C1A;
+  padding: 5px 15px;
+  border-radius: 20px;
+  border: 2px solid #7a4d2f;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .admin-container {
+    margin: 10px;
+    padding: 20px;
+  }
+  
+  .product-form {
+    padding: 20px;
+  }
+  
+  .stock-display {
+    padding: 20px;
+  }
+  
+  .stock-display p {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+}
