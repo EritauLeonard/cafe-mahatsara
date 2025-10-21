@@ -1,0 +1,5 @@
+;/*FB_PKG_DELIM*/
+
+__d("normalizeBoundingClientRect",[],(function(a,b,c,d,e,f){"use strict";function a(a,b){a=a.ownerDocument.documentElement;var c=a?a.clientLeft:0;a=a?a.clientTop:0;var d=Math.round(b.left)-c;c=Math.round(b.right)-c;var e=Math.round(b.top)-a;b=Math.round(b.bottom)-a;return{left:d,right:c,top:e,bottom:b,width:c-d,height:b-e}}f["default"]=a}),66);
+__d("getElementRect",["containsNode","normalizeBoundingClientRect"],(function(a,b,c,d,e,f,g){function a(a){var b,d=a==null||(b=a.ownerDocument)==null?void 0:b.documentElement;return!a||!("getBoundingClientRect"in a)||!c("containsNode")(d,a)?{left:0,right:0,top:0,bottom:0,width:0,height:0}:c("normalizeBoundingClientRect")(a,a.getBoundingClientRect())}g["default"]=a}),98);
+__d("getElementPosition",["getElementRect"],(function(a,b,c,d,e,f,g){function a(a){a=c("getElementRect")(a);return{x:a.left,y:a.top,width:a.right-a.left,height:a.bottom-a.top}}g["default"]=a}),98);
